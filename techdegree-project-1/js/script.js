@@ -46,6 +46,7 @@ tags: "Advice",
 quote: "The best revenge is massive success",
 source: "Frank Sinatra",
 citation: "Playboy Magazine",
+tags:"Advice",
 },
 
 {
@@ -73,11 +74,22 @@ tags: "Advice",
 },
 ]
 
-// selects a RANDOM quote from the object array and returns it
-function getRandomQuote(){
-  var randomNumber = Math.floor( Math.random() * quotes.length );
-  return quotes[randomNumber];
+// Selects a random quote object from the quotes array and then loops all objects
+var usedQuotes = [];
+function getRandomQuote() {
+    do {
+      for (var i = 0; i < quotes.length; i++) {
+        var getRandomNumber = Math.floor(Math.random() * quotes.length);
+            // checks if quotes is used then returns random
+        if (usedQuotes.indexOf(getRandomNumber) == -1) {
+            usedQuotes.push(getRandomNumber);
+            return quotes[getRandomNumber];}
+        }
+        // array is reassigned
+        usedQuotes = [];
+    } while (usedQuotes.length < quotes.length);
 }
+
 
 //calls ​getRandomQuote ​& stores objects & propagate to div box
 function printQuote(){
