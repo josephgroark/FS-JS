@@ -14,17 +14,31 @@ tags: "Sports",
 },
 
 {
+quote: "Life isn’t about getting and having, it’s about giving and being.",
+source: "Kevin Kruse",
+citation: "Twitter",
+year: 2015,
+tags: "Spirtual",
+},
+
+{
+quote: "An unexamined life is not worth living.",
+source: "Socrates",
+citation: "Dialogues",
+tags: "Career",
+},
+
+{
+// removed unknown for year
 quote: "The mind is everything. What you think you become",
 source: "Buddha",
 citation: "Majjhima Nikaya 19",
-year: "Unknown",
 tags: "Spirtual",
 },
 
 {
 quote: "The best time to plant a tree was 20 years ago. The second best time is now",
 source: "Chinese Proverb",
-year: "unknown ",
 tags: "Advice",
 },
 
@@ -32,7 +46,22 @@ tags: "Advice",
 quote: "The best revenge is massive success",
 source: "Frank Sinatra",
 citation: "Playboy Magazine",
-year: 1962,
+tags:"Advice",
+},
+
+{
+quote: "Your time is limited, so don’t waste it living someone else’s life.",
+source: "Steve Jobs",
+citation: "Jobs",
+year: 2006,
+tags: "Career",
+},
+
+{
+quote: "Either you run the day, or the day runs you.",
+source: "Jim Rohn",
+citation: "The Art of Exceptional Living",
+year: 1993,
 tags: "Career",
 },
 
@@ -45,11 +74,22 @@ tags: "Advice",
 },
 ]
 
-// selects a RANDOM quote from the object array and returns it
-function getRandomQuote(){
-  var randomNumber = Math.floor( Math.random() * quotes.length );
-  return quotes[randomNumber];
+// Selects a random quote object from the quotes array and then loops all objects
+var usedQuotes = [];
+function getRandomQuote() {
+    do {
+      for (var i = 0; i < quotes.length; i++) {
+        var getRandomNumber = Math.floor(Math.random() * quotes.length);
+            // checks if quotes is used then returns random
+        if (usedQuotes.indexOf(getRandomNumber) == -1) {
+            usedQuotes.push(getRandomNumber);
+            return quotes[getRandomNumber];}
+        }
+        // array is reassigned
+        usedQuotes = [];
+    } while (usedQuotes.length < quotes.length);
 }
+
 
 //calls ​getRandomQuote ​& stores objects & propagate to div box
 function printQuote(){
